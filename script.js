@@ -15,3 +15,32 @@ document.getElementById("result").textContent
 document.getElementById("nameInput").addEventListener("input", function (e) {
     document.getElementById("nameOutput").textContent = `Hello, ${e.target.value}`;
 });
+
+
+// Object
+let user = {
+    name: "John",
+    age: 25,
+    isAdmin: true,
+};
+
+// Array
+let colors = ["red", "green", "blue"];
+
+// Function
+function greet(name) {
+    return `Hello, ${name}`;
+}
+
+console.log(greet("John"));
+
+
+
+let isLoggedIn = true;
+let hasPaid = false;
+
+if (isLoggedIn) {
+    console.log("Welcome back!");
+}   else {
+    consosle.log("Please log in.");
+}
