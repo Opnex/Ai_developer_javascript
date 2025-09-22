@@ -1,0 +1,34 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Personal Information Display Exercise</title>
+    <link rel="stylesheet" href="style.css">
+</head>
+<body>
+    <div class="container">
+        <header>
+            <h1>Personal Information Display</h1>
+        </header>
+        
+        <section class="exercise-section">
+            <div class="controls">
+                <button class="primary-btn" onclick="showExample()">Show Example Profile</button>
+                <button class="secondary-btn" onclick="createCustomProfile()">Create Custom Profile</button>
+                <button class="secondary-btn" onclick="showHint()">Show Hint</button>
+            </div>
+            
+            <div class="output-section">
+                <h3 class="output-title">Output</h3>
+                <div id="output-message">Click a button above to generate a personal information display...</div>
+                <div id="profile-card" class="profile-card">
+                    <!-- Profile content will be generated here -->
+                </div>
+            </div>
+        </section>
+    </div>
+    
+    <script src="script.js"></script>
+</body>
+</html>
