@@ -41,6 +41,11 @@ nav button:hover {
   color: white;
 }
 
+nav button.active {
+  background-color: green;
+  color: white;
+}
+
 /* Sections */
 .content {
   max-width: 800px;
