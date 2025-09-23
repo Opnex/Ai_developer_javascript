@@ -22,4 +22,5 @@ function showArithmeticOperators() {
     `;
     
     document.getElementById('operators-output').innerHTML = output;
+    console.log(`${output}`)
 }
