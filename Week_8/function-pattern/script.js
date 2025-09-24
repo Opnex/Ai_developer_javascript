@@ -40,8 +40,8 @@ console.log("Function Pattern Examples:");
 console.log(""); // Empty line
 
 console.log("Email validation:");
-console.log(isValidEmail("user@example.com")); // true
-console.log(isValidEmail("invalid-email"));    // false
+console.log(isValidated("user@example.com")); // true
+console.log(isValidated("invalid-email"));    // false
 
 console.log(""); // Empty line
 
