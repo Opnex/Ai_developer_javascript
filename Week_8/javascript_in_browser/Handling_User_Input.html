@@ -1,0 +1,50 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>User Input Examples</title>
+</head>
+<body>
+    <h1>User Input Demo</h1>
+    
+    <!-- Text input -->
+    <div>
+        <label>Your Name:</label>
+        <input type="text" id="nameInput" placeholder="Enter your name">
+        <button onclick="greetUser()">Greet Me</button>
+    </div>
+    
+    <div id="greeting"></div>
+    
+    <hr>
+    
+    <!-- Number input -->
+    <div>
+        <label>Age:</label>
+        <input type="number" id="ageInput" placeholder="Enter your age">
+        <button onclick="checkAge()">Check Age</button>
+    </div>
+    
+    <div id="ageResult"></div>
+    
+    <hr>
+    
+    <!-- Multiple inputs -->
+    <div>
+        <h3>Simple Calculator</h3>
+        <input type="number" id="num1" placeholder="First number">
+        <select id="operation">
+            <option value="+">+</option>
+            <option value="-">-</option>
+            <option value="*">×</option>
+            <option value="/">/</option>
+        </select>
+        <input type="number" id="num2" placeholder="Second number">
+        <button onclick="calculate()">Calculate</button>
+    </div>
+    
+    <div id="result"></div>
+
+</body>
+</html>
