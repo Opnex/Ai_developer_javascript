@@ -46,5 +46,96 @@
     
     <div id="result"></div>
 
+
+    <script>
+
+        function greetUser() {
+            // Get the value from the input field
+            let name = document.getElementById('nameInput').value;
+
+            // Check if user entered something
+            if (name === "") {
+                document.getElementById('greeting').textContent = "Please enter your name!";
+                return;
+            }
+
+            // Create personalized greeting
+            let greeting = `Hello, ${name}! Welome to our website.`;
+            document.getElementById('greeting').textContent = greeting;
+            document.getElementById('greeting').style.color = "green";
+        }
+
+        function checkAge() {
+            let age = document.getElementById('ageInput').value;
+            let resultDiv = document.getElementById('ageResult');
+
+            // Convert to number and validate
+            age = Number(age);
+
+            if (age === 0 || isNaN(age)) {
+                resultDiv.textContent = "Please enter a Valid age!";
+                resultDiv.style.color = "red";
+                return; 
+            }
+
+            let message = "";
+            if (age < 13) {
+                message = `You are ${age} years old - you're a child!`;
+            } else if (age < 18) {
+                message = `You are ${age} years old - you're a teenager!`;
+            } else if (age < 65) {
+                message = `You are ${age} years old - you're an adult and can vote!`;
+            } else {
+                message = `You are ${age} years old - you're a senior!`;
+            }
+
+            resultDiv.textContent = message;
+            resultDiv.style.color = "blue";
+        }
+
+        function calculate() {
+          // Get all the input values
+          let num1 = Number(document.getElementById('num1').value); 
+          let num2 = Number(document.getElementById('num2').value);
+          let operation = document.getElementById('operation').value;
+          let resultDiv = document.getElementById('result');
+
+          // Validate inputs
+          if (isNaN(num1) || isNaN(num2)) {
+            resultDiv.textContent = "Please enter valid numbers!";
+            resultDiv.style.color = "red";
+            return;
+          }
+
+          // Perform calculation
+          let answer;
+          let operationSymbol = operation; 
+
+          if (operation === "+") {
+            answer = num1 + num2;
+          } else if (operation === "-") {
+            answer = num1 - num2;
+          } else if (operation === "*") {
+            answer = num1 * num2;
+            operationSymbol = "x";
+          } else if (operation === "/") {
+            if (num2 === 0) {
+                resultDiv.textContent = "Cannot divide by zero!";
+                resultDiv.style.color = "red";
+                return;
+            }
+            answer = num1 / num2;
+          }
+          // Display result
+          resultDiv.textContent = `${num1} ${operationSymbol} ${num2} = ${answer}`;
+          resultDiv.style.color = "greeen";
+          resultDiv.style.fontSize = "20px";
+        }
+
+        // Clear results when page loads
+        document.getElementById('greeting').textContent = "";
+        document.getElementById('ageResult').textContent = "";
+        document.getElementById('result').textContent = "";
+    </script>
 </body>
 </html>
