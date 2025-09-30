@@ -1,0 +1,83 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+    <link rel="stylesheet" href="style.css">
+</head>
+<body>
+
+    
+    <script>
+
+        // ## Learning Objectives
+// By the end of this lesson, you will:
+// - Understand what localStorage is and why it's essential for web applications
+// - Save and retrieve simple data from localStorage
+// - Work with arrays and objects in localStorage using JSON
+// - Handle common localStorage errors and edge cases  
+// - Check local storage practice example
+
+
+// ## The Problem localStorage Solves
+
+// ### Why We Need Data Persistence
+
+// In your previous projects, you noticed a frustrating problem:
+
+
+// Your café menu
+let menuItems = [
+    { id: 1, name: "Coffee", price: 3.50 },
+    { id: 2, name: "Sandwich", price: 8.00 }
+];
+
+// User adds a new item
+menuItems.push({ id: 3, name: "Tea", price: 2.50 });
+
+console.log("Menu items:", menuItems); // Shows 3 items
+
+// But when user refreshes the page...
+// All data is lost! menuItems resets to original 2 items
+
+
+// **The Problem:** JavaScript variables reset every time the page loads.
+
+// **The Solution:** localStorage saves data in the browser permanently.
+
+
+
+// localStorage works with key-value pairs (like objects)
+
+// Save data
+localStorage.setItem('userName', 'Alice');
+localStorage.setItem('userAge', '25');
+localStorage.setItem('isLoggedIn', 'true');
+
+// Get data
+let name = localStorage.getItem('userName');
+let age = localStorage.getItem('userAge');
+let loggedIn = localStorage.getItem('isLoggedIn');
+
+console.log("Retrieved data:");
+console.log("Name:", name);     // "Alice"
+console.log("Age:", age);       // "25" (note: always returns string)
+console.log("Logged in:", loggedIn); // "true"
+
+// Check if data exists
+if (localStorage.getItem('userName') !== null) {
+    console.log("User name is saved");
+} else {
+    console.log("No user name saved");
+}
+
+// Remove specific item
+localStorage.removeItem('userAge');
+
+// Clear all localStorage data
+// localStorage.clear(); // Uncomment to test
+
+    </script>
+</body>
+</html>

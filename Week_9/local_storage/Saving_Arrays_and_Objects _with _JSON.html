@@ -1,0 +1,78 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+<body>
+    <script>
+        // localStorage can't directly store arrays or objects
+// We use JSON.stringify() and JSON.parse()
+
+// Array example
+let favoriteColors = ["blue", "green", "red"];
+console.log("Original array:", favoriteColors);
+
+// Save array (convert to JSON string)
+localStorage.setItem('colors', JSON.stringify(favoriteColors));
+
+// Load array (convert back from JSON)
+let loadedColors = localStorage.getItem('colors');
+if (loadedColors !== null) {
+    loadedColors = JSON.parse(loadedColors);
+    console.log("Loaded array:", loadedColors);
+    console.log("First color:", loadedColors[0]);
+}
+
+console.log(""); // Empty line
+
+// Object example
+let userProfile = {
+    name: "John Doe",
+    age: 30,
+    email: "john@example.com",
+    preferences: {
+        theme: "dark",
+        notifications: true
+    }
+};
+
+console.log("Original object:", userProfile);
+
+// Save object
+localStorage.setItem('profile', JSON.stringify(userProfile));
+
+// Load object
+let loadedProfile = localStorage.getItem('profile');
+if (loadedProfile !== null) {
+    loadedProfile = JSON.parse(loadedProfile);
+    console.log("Loaded object:", loadedProfile);
+    console.log("User name:", loadedProfile.name);
+    console.log("Theme preference:", loadedProfile.preferences.theme);
+}
+
+console.log(""); // Empty line
+
+// Array of objects example (like menu items)
+let menuItems = [
+    { id: 1, name: "Coffee", price: 3.50, category: "Drinks" },
+    { id: 2, name: "Sandwich", price: 8.00, category: "Food" },
+    { id: 3, name: "Cookie", price: 2.25, category: "Dessert" }
+];
+
+// Save menu
+localStorage.setItem('cafeMenu', JSON.stringify(menuItems));
+
+// Load menu
+let savedMenu = localStorage.getItem('cafeMenu');
+if (savedMenu !== null) {
+    let loadedMenu = JSON.parse(savedMenu);
+    console.log("Loaded menu items:");
+    for (let item of loadedMenu) {
+        console.log(`${item.name}: $${item.price} (${item.category})`);
+    }
+}
+    </script>
+</body>
+</html>

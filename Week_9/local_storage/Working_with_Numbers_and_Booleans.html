@@ -1,0 +1,67 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+<body>
+    <script>
+        // localStorage only stores strings, so we need to convert data types
+
+// Saving numbers
+let price = 15.99;
+localStorage.setItem('productPrice', price.toString());
+// or simply: localStorage.setItem('productPrice', price);
+
+// Loading numbers
+let savedPrice = localStorage.getItem('productPrice');
+if (savedPrice !== null) {
+    savedPrice = Number(savedPrice); // Convert string to number
+    console.log("Price:", savedPrice, typeof savedPrice);
+}
+
+console.log(""); // Empty line
+
+// Saving booleans
+let isActive = true;
+localStorage.setItem('userActive', isActive.toString());
+
+// Loading booleans
+let savedActive = localStorage.getItem('userActive');
+if (savedActive !== null) {
+    savedActive = savedActive === 'true'; // Convert string to boolean
+    console.log("Active:", savedActive, typeof savedActive);
+}
+
+console.log(""); // Empty line
+
+// Helper functions for data conversion
+function saveNumber(key, value) {
+    localStorage.setItem(key, value.toString());
+}
+
+function loadNumber(key, defaultValue = 0) {
+    let saved = localStorage.getItem(key);
+    return saved !== null ? Number(saved) : defaultValue;
+}
+
+function saveBoolean(key, value) {
+    localStorage.setItem(key, value.toString());
+}
+
+function loadBoolean(key, defaultValue = false) {
+    let saved = localStorage.getItem(key);
+    return saved !== null ? saved === 'true' : defaultValue;
+}
+
+// Test the helper functions
+saveNumber('itemCount', 42);
+saveBoolean('isPremium', true);
+
+console.log("Item count:", loadNumber('itemCount'));
+console.log("Is premium:", loadBoolean('isPremium'));
+console.log("Non-existent number:", loadNumber('missing', 100));
+    </script>
+</body>
+</html>
