@@ -1,0 +1,115 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+
+  <style>
+    body {
+      font-family: Arial, sans-serif;
+      margin: 20px;
+      background: #f9f9f9;
+    }
+
+    h2 {
+      color: #333;
+    }
+
+    textarea {
+      width: 100%;
+      height: 150px;
+      padding: 10px;
+      font-size: 16px;
+      border-radius: 8px;
+      border: 1px solid #ccc;
+      resize: none;
+      margin-bottom: 15px;
+    }
+
+    button {
+      padding: 10px 15px;
+      font-size: 16px;
+      border: none;
+      border-radius: 6px;
+      margin-right: 10px;
+      cursor: pointer;
+    }
+
+    #saveBtn {
+      background: #28a745;
+      color: white;
+    }
+
+    #loadBtn {
+      background: #007bff;
+      color: white;
+    }
+
+    #timestamp {
+      margin-top: 10px;
+      color: #555;
+      font-size: 14px;
+    }
+  </style>
+<body>
+
+    <h2> Persistent Notes App</h2>
+  
+  <textarea id="note" placeholder="Type your note here..."></textarea><br>
+  
+  <button id="saveBtn">Save Note</button>
+  <button id="loadBtn">Load Note</button>
+  
+  <p id="timestamp"></p>
+  
+  <script>
+        const textarea = document.getElementById('note');
+    const saveBtn = document.getElementById('saveBtn');
+    const loadBtn = document.getElementById('loadBtn');
+    const timestamp = document.getElementById('timestamp');
+
+    // Save Note
+    saveBtn.addEventListener('click', function() {
+      const note = textarea.value;
+      const savedAt = new Date().toLocaleString(); // timestamp
+
+      const noteData = {
+        text: note,
+        savedAt: savedAt
+      };
+
+      localStorage.setItem('myNote', JSON.stringify(noteData));
+
+      timestamp.textContent = `Last saved at: ${savedAt}`;
+      alert('Note saved!');
+
+      textarea.value = "";
+    });
+
+    // Load Note
+    loadBtn.addEventListener('click', function() {
+      const storedNote = localStorage.getItem('myNote');
+
+      if (storedNote) {
+        const noteData = JSON.parse(storedNote);
+        textarea.value = noteData.text;
+        timestamp.textContent = `Last saved at: ${noteData.savedAt}`;
+      } else {
+        alert('No saved note found!');
+      }
+    });
+
+    // Auto-load note on page refresh
+    window.addEventListener('DOMContentLoaded', () => {
+      const storedNote = localStorage.getItem('myNote');
+      if (storedNote) {
+        const noteData = JSON.parse(storedNote);
+        textarea.value = noteData.text;
+        timestamp.textContent = `Last saved at: ${noteData.savedAt}`;
+      }
+    });
+  </script>
+</body>
+</html>

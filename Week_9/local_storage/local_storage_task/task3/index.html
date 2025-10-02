@@ -1,0 +1,82 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Theme Switcher</title>
+  <style>
+    body {
+      font-family: Arial, sans-serif;
+      text-align: center;
+      margin-top: 50px;
+      transition: background 0.3s, color 0.3s;
+    }
+
+    h2 {
+      margin-bottom: 20px;
+    }
+
+    button {
+      padding: 10px 20px;
+      margin: 5px;
+      font-size: 16px;
+      border: none;
+      border-radius: 6px;
+      cursor: pointer;
+    }
+
+    #lightBtn { background: #f0f0f0; color: #000; }
+    #darkBtn { background: #333; color: #fff; }
+    #blueBtn { background: #007bff; color: #fff; }
+
+    /* Themes */
+    .light {
+      background: #ffffff;
+      color: #000000;
+    }
+
+    .dark {
+      background: #121212;
+      color: #ffffff;
+    }
+
+    .blue {
+      background: #e6f0ff;
+      color: #003366;
+    }
+  </style>
+</head>
+<body>
+
+  <h2> Theme Switcher</h2>
+
+  <button id="lightBtn">Light Mode</button>
+  <button id="darkBtn">Dark Mode</button>
+  <button id="blueBtn">Blue Mode</button>
+
+  <script>
+    const body = document.body;
+    const lightBtn = document.getElementById('lightBtn');
+    const darkBtn = document.getElementById('darkBtn');
+    const blueBtn = document.getElementById('blueBtn');
+
+    // Apply theme function
+    function applyTheme(theme) {
+      body.className = theme; // switch body class
+      localStorage.setItem('theme', theme); // save to localStorage
+    }
+
+    // Event listeners
+    lightBtn.addEventListener('click', () => applyTheme('light'));
+    darkBtn.addEventListener('click', () => applyTheme('dark'));
+    blueBtn.addEventListener('click', () => applyTheme('blue'));
+
+    // On page load, apply saved theme
+    window.addEventListener('DOMContentLoaded', () => {
+      const savedTheme = localStorage.getItem('theme') || 'light';
+      applyTheme(savedTheme);
+    });
+  </script>
+
+</body>
+</html>

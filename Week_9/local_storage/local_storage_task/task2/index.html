@@ -1,0 +1,85 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Visit Counter</title>
+  <style>
+    body {
+      font-family: Arial, sans-serif;
+      text-align: center;
+      margin-top: 50px;
+      background: #f9f9f9;
+    }
+    #counter {
+      font-size: 20px;
+      margin-bottom: 15px;
+    }
+    button {
+      padding: 10px 20px;
+      font-size: 16px;
+      border: none;
+      border-radius: 6px;
+      background: #dc3545;
+      color: white;
+      cursor: pointer;
+    }
+    button:hover {
+      background: #c82333;
+    }
+    #firstVisit {
+      margin-top: 10px;
+      font-size: 14px;
+      color: #555;
+    }
+  </style>
+</head>
+<body>
+
+  <h2> Welcome to the Visit Counter</h2>
+  
+  <p id="counter"></p>
+  <p id="firstVisit"></p>
+  
+  <button id="resetBtn">Reset Counter</button>
+  
+  <script>
+    const counterEl = document.getElementById('counter');
+    const firstVisitEl = document.getElementById('firstVisit');
+    const resetBtn = document.getElementById('resetBtn');
+
+    // Load or initialize visit count
+    let visitCount = localStorage.getItem('visitCount');
+    let firstVisit = localStorage.getItem('firstVisit');
+
+    if (visitCount) {
+      visitCount = parseInt(visitCount) + 1;
+      localStorage.setItem('visitCount', visitCount);
+    } else {
+      visitCount = 1;
+      localStorage.setItem('visitCount', visitCount);
+
+      // Save first visit date (only once)
+      firstVisit = new Date().toLocaleString();
+      localStorage.setItem('firstVisit', firstVisit);
+    }
+
+    // Display visit count
+    counterEl.textContent = `You have visited this page ${visitCount} times.`;
+
+    // Display first visit date
+    if (firstVisit) {
+      firstVisitEl.textContent = `First visit was on: ${firstVisit}`;
+    }
+
+    // Reset button
+    resetBtn.addEventListener('click', () => {
+      localStorage.removeItem('visitCount');
+      localStorage.removeItem('firstVisit');
+      counterEl.textContent = "Counter has been reset.";
+      firstVisitEl.textContent = "";
+    });
+  </script>
+
+</body>
+</html>

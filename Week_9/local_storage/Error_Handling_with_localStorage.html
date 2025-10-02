@@ -1,0 +1,81 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+<body>
+    <script>
+        // localStorage can fail, so always use error handling
+
+function saveDataSafely(key, data) {
+    try {
+        localStorage.setItem(key, JSON.stringify(data));
+        return true;
+    } catch (error) {
+        console.log("Error saving data:", error.message);
+        return false;
+    }
+}
+
+function loadDataSafely(key, defaultValue = null) {
+    try {
+        let saved = localStorage.getItem(key);
+        if (saved === null) {
+            return defaultValue;
+        }
+        return JSON.parse(saved);
+    } catch (error) {
+        console.log("Error loading data:", error.message);
+        return defaultValue;
+    }
+}
+
+// When JavaScript throws an error, it creates an Error object.  
+// That object usually has 3 common properties:
+
+// - **name** → the type of error (e.g. "SyntaxError", "QuotaExceededError")  
+// - **message** → a human-readable description of what went wrong  
+// - **stack** → a technical trace of where the error happened  
+
+// Test error handling
+let testData = { name: "Test User", scores: [90, 85, 92] };
+
+if (saveDataSafely('testUser', testData)) {
+    console.log("Data saved successfully");
+} else {
+    console.log("Failed to save data");
+}
+
+let loaded = loadDataSafely('testUser', { name: "Default", scores: [] });
+console.log("Loaded data:", loaded);
+
+// Test with corrupted data
+localStorage.setItem('corruptedData', 'invalid json{');
+let corrupted = loadDataSafely('corruptedData', "default value");
+console.log("Corrupted data result:", corrupted);
+
+console.log(""); // Empty line
+
+// Check localStorage availability
+function isLocalStorageAvailable() {
+    try {
+        let test = 'test';
+        localStorage.setItem(test, test);
+        localStorage.removeItem(test);
+        return true;
+    } catch (error) {
+        return false;
+    }
+}
+
+if (isLocalStorageAvailable()) {
+    console.log("localStorage is available");
+} else {
+    console.log("localStorage is not available");
+}
+
+    </script>
+</body>
+</html>
