@@ -1,0 +1,110 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <title>Simple Countdown</title>
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+            text-align: center;
+            padding: 50px;
+        }
+        
+        .timer {
+            background-color: #e74c3c;
+            color: white;
+            padding: 40px;
+            border-radius: 10px;
+            font-size: 72px;
+            display: inline-block;
+            margin: 20px;
+        }
+        
+        input {
+            padding: 10px;
+            font-size: 18px;
+            width: 80px;
+        }
+        
+        button {
+            padding: 10px 20px;
+            font-size: 16px;
+            margin: 5px;
+        }
+    </style>
+</head>
+<body>
+    <h1>Countdown Timer</h1>
+    
+    <div class="timer" id="timerDisplay">00:00</div>
+    
+    <br>
+    
+    <input type="number" id="minutesInput" placeholder="Minutes" value="5">
+    <input type="number" id="secondsInput" placeholder="Seconds" value="0">
+    
+    <br><br>
+    
+    <button onclick="startTimer()">Start</button>
+    <button onclick="stopTimer()">Stop</button>
+    <button onclick="resetTimer()">Reset</button>
+
+    <script>
+        let timerInterval = null;
+        let totalSeconds = 0;
+        
+        function updateDisplay() {
+            let minutes = Math.floor(totalSeconds / 60);
+            let seconds = totalSeconds % 60;
+            
+            // Add leading zeros
+            if (minutes < 10) minutes = "0" + minutes;
+            if (seconds < 10) seconds = "0" + seconds;
+            
+            document.getElementById('timerDisplay').textContent = minutes + ":" + seconds;
+            
+            // Alert when time is up
+            if (totalSeconds <= 0) {
+                document.getElementById('timerDisplay').textContent = "TIME'S UP!";
+            }
+        }
+        
+        function startTimer() {
+            // Get user input
+            let minutes = parseInt(document.getElementById('minutesInput').value) || 0;
+            let seconds = parseInt(document.getElementById('secondsInput').value) || 0;
+            
+            totalSeconds = (minutes * 60) + seconds;
+            
+            if (totalSeconds <= 0) {
+                alert("Please enter a time!");
+                return;
+            }
+            
+            updateDisplay();
+            
+            // Start countdown
+            timerInterval = setInterval(function() {
+                totalSeconds--;
+                updateDisplay();
+                
+                if (totalSeconds <= 0) {
+                    clearInterval(timerInterval);
+                    alert("Time's up!");
+                }
+            }, 1000);
+        }
+        
+        function stopTimer() {
+            clearInterval(timerInterval);
+        }
+        
+        function resetTimer() {
+            clearInterval(timerInterval);
+            totalSeconds = 0;
+            updateDisplay();
+        }
+        
+        updateDisplay();
+    </script>
+</body>
+</html>

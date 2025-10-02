@@ -60,12 +60,13 @@
         }
 
         function startClock() {
-            updateClock // Show time immediately
+            updateClock(); // Show time immediately
             clockInterval = setInterval(updateClock, 1000); // Update every second
         }
 
         function stopClock() {
             clearInterval(clockInterval);
+            clockInterval = null;
         }
 
         startClock()
