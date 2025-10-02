@@ -1,0 +1,42 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+<body>
+    <script>
+        // You can cancel a timeout before it runs
+
+        // Save the timer ID
+        let timerId = setTimeout(() => {
+            console.log("This will NOT run");
+        }, 5000);
+
+        // Cancel it
+        clearTimeout(timerId);
+        console.log("Timer was cancelled");
+
+        // Practical example: Auto-hide notification
+        let notificationTimer;
+
+        function showNotification(message) {
+            console.log("Notification", message);
+
+            // Hide after 3 seconds
+            notificationTimer = setTimeout(() => {
+            console.log("Notification hidden");
+            }, 3000);
+        }
+
+        function hideNotificationNow() {
+            clearTimeout(notificationTimer);
+            console.log("Notification hidden immediately");
+        }
+
+        // Test it
+        showNotification("Welcome!");
+    </script>
+</body>
+</html>

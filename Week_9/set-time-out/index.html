@@ -1,0 +1,41 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+<body>
+    <script>
+        console.log("Start");
+        setTimeout(function() {
+            console.log("This appears after 2 seconds")
+        }, 2000);
+
+        setTimeout(function() {
+            console.log("End after the first appear")
+        }, 3000);
+
+
+        // More setTimeout Examples
+        setTimeout(function() {
+            console.log("Hello after 1 second")
+        }, 1000)
+
+        // Example 2: With arrow function (shorter way)
+        setTimeout(() => {
+            console.log("Hello after 3 seconds");
+        }, 3000)
+
+        function showMessage() {
+            console.log("This is a delayed message");
+        }
+        setTimeout(showMessage, 2000);
+
+        // Example 4: Multiple timers
+        setTimeout(() => console.log("1 second"), 1000);
+        setTimeout(() => console.log("2 seconds"), 2000);
+        setTimeout(() => console.log("3 seconds"), 3000);
+    </script>
+</body>
+</html>

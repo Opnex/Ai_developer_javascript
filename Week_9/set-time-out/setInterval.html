@@ -1,0 +1,39 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+<body>
+    <script>
+    //   ## setInterval - Repeat Code
+
+    // **What is setInterval?**  
+    // `setInterval()` runs code repeatedly at fixed time intervals. Think of it like a timer that keeps going off every few seconds, unlike `setTimeout()` which only goes off once.
+
+    // **Common Uses:**
+    // - Digital clocks that update every second
+    // - Countdown timers
+    // - Auto-updating content (like live scores)
+    // - Simple animations
+
+        // setInterval runs code REPEATEDLY
+        // Syntax: setInterval(function, milliseconds)
+
+        let counter = 0;
+        
+        // This runs every 1 second
+        let intervalid = setInterval(function () {
+           counter++;
+           console.log("Counter:", counter);
+           
+           // Stop after 5 times
+           if (counter >= 5) {
+            clearInterval(intervalid)
+            console.log("Stopped")
+           }
+        }, 1000)
+    </script>
+</body>
+</html>

@@ -1,0 +1,32 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+<body>
+    <script>
+        // Simple Countdown Timer
+
+        function startCountdown(seconds) {
+    let timeLeft = seconds;
+    
+    console.log("Countdown started:", timeLeft);
+    
+    let countdownId = setInterval(function() {
+        timeLeft--;
+        console.log("Time left:", timeLeft);
+        
+        if (timeLeft <= 0) {
+            clearInterval(countdownId);
+            console.log("Time's up!");
+        }
+    }, 1000);
+}
+
+// Start a 10 second countdown
+startCountdown(10);
+    </script>
+</body>
+</html>
