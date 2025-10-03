@@ -9,20 +9,20 @@
     <script>
         // You can cancel a timeout before it runs
 
-        // Save the timer ID
-        let timerId = setTimeout(() => {
-            console.log("This will NOT run");
-        }, 5000);
+        // // Save the timer ID
+        // let timerId = setTimeout(() => {
+        //     console.log("This will NOT run");
+        // }, 5000);
 
-        // Cancel it
-        clearTimeout(timerId);
-        console.log("Timer was cancelled");
+        // // Cancel it
+        // clearTimeout(timerId);
+        // console.log("Timer was cancelled");
 
         // Practical example: Auto-hide notification
         let notificationTimer;
 
         function showNotification(message) {
-            console.log("Notification", message);
+            console.log("Notification:", message);
 
             // Hide after 3 seconds
             notificationTimer = setTimeout(() => {
