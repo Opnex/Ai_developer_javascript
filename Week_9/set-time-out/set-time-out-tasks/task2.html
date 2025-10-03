@@ -1,0 +1,70 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+
+        <style>
+        body {
+         text-align: center; padding: 50px; 
+         }
+
+        #text {
+         font-size: 24px; height: 40px; margin: 30px 0; 
+         }
+
+        button {
+         padding: 10px 20px; margin: 10px; 
+         }
+         
+        .blink {
+         animation: blink 1s infinite;
+          }
+        @keyframes blink { 50% { opacity: 0; } }
+    </style>
+</head>
+<body>
+    <h1>Typing Effect</h1>
+    <p id="text"></p>
+    <button onclick="start()">Start</button>
+    <button onclick="restart()">Restart</button>
+
+    <script>
+        let text = "Welcome to JavaScript Timers!";
+        let i = 0;
+        let timer;
+        let blinkTimer;
+        
+        function type() {
+            document.getElementById('text').textContent += text[i];
+            i++;
+            
+            if (i < text.length) {
+                timer = setTimeout(type, 300);
+            } else {
+                // Start blinking when done
+                blinkTimer = setInterval(() => {
+                    document.getElementById('text').classList.toggle('blink');
+                }, 500);
+            }
+        }
+        
+        function start() {
+            clearTimeout(timer);
+            clearInterval(blinkTimer);
+            document.getElementById('text').textContent = '';
+            document.getElementById('text').classList.remove('blink');
+            i = 0;
+            type();
+        }
+        
+        function restart() {
+            start();
+        }
+        
+        // Start automatically
+        start();
+    </script>
+</body>
+</html>

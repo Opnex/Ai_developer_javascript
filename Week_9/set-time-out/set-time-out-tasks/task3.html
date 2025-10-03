@@ -1,0 +1,47 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+    <style>
+        body {
+             max-width: 600px; margin: 50px auto; padding: 20px;
+         }
+        textarea { 
+            width: 100%; height: 200px; padding: 10px;
+         }
+        #msg { 
+            color: green; height: 20px;
+         }
+    </style>
+</head>
+<body>
+    <h1>Auto-Save Draft</h1>
+    <textarea id="text" placeholder="Type here..."></textarea>
+    <div id="msg"></div>
+
+    <script>
+        // Load saved text
+        document.getElementById('text').value = localStorage.getItem('draft') || '';
+        
+        // Auto-save every 5 seconds
+        setInterval(() => {
+            // Save text
+            const text = document.getElementById('text').value;
+            localStorage.setItem('draft', text);
+            
+            // Show time
+            const time = new Date().toLocaleTimeString();
+            document.getElementById('msg').textContent = `Saved at ${time}`;
+            
+            // Hide message after 2 seconds
+            setTimeout(() => {
+                document.getElementById('msg').textContent = '';
+            }, 2000);
+            
+        }, 5000);
+    </script>
+</body>
+</html>

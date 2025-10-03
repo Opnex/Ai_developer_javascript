@@ -1,0 +1,77 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+
+    <style>
+        *{
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        body {
+            background-color: rgb(247, 223, 191);
+            text-align: center;
+            margin: 20px;
+        }
+    </style>
+
+</head>
+<body>
+    <h1>Employee Management</h1>
+    <p> Open your browser console to see results.</p>
+    
+  <script>
+
+    class Employee {
+      constructor(name, salary) {
+        this.name = name;
+        this.salary = salary;
+      }
+
+      getDetails() {
+        return `Employee: ${this.name}, Salary: ₦${this.salary}`;
+      }
+      
+      isHighEarner() {
+        return this.salary > 100000;
+      }
+    }
+    
+    class Manager extends Employee {
+      constructor(name, salary, department) {
+        super(name, salary);
+        this.department = department;
+      }
+      
+      getDetails() {
+        return `Manager: ${this.name}, Salary: ₦${this.salary}, Department: ${this.department}`;
+      }
+    }
+    
+    const emp1 = new Employee("Israel", 2000000);
+    const emp2 = new Employee("Temiloluwa", 1500000);
+    const emp3 = new Employee("Funmbi", 1800000);
+    const emp4 = new Employee("Tope", 50000);
+    const manager1 = new Manager("Opeyemi", 5000000, "Finance");
+    const manager2 = new Manager("Ayomidimeji", 2500000, "Finance");
+    const manager3 = new Manager("Iremide", 3500000, "Finance");
+    const manager4 = new Manager("Aishat", 65000, "Finance");
+
+    console.log("---- Employee Management ----");
+    console.log(emp1.getDetails(), "→ High Earner?", emp1.isHighEarner());
+    console.log(emp2.getDetails(), "→ High Earner?", emp2.isHighEarner());
+    console.log(emp3.getDetails(), "→ High Earner?", emp3.isHighEarner());
+    console.log(emp4.getDetails(), "→ High Earner?", emp4.isHighEarner());
+    console.log(manager1.getDetails(), "→ High Earner?", manager1.isHighEarner());
+    console.log(manager2.getDetails(), "→ High Earner?", manager2.isHighEarner());
+    console.log(manager3.getDetails(), "→ High Earner?", manager3.isHighEarner());
+    console.log(manager4.getDetails(), "→ High Earner?", manager4.isHighEarner());
+
+  </script>
+
+</body>
+</html>

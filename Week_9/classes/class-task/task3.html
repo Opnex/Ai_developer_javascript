@@ -1,0 +1,67 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+
+     <style>
+    *{
+        margin: 0;
+        padding: 0;
+        box-sizing: border-box;
+    }
+
+    body {
+
+        background-color: rgb(247, 225, 198);
+        text-align: center;
+        margin: 20px;
+    }
+  </style>
+
+</head>
+<body>
+
+    <h1>Vehicle Maintenance</h1>
+    <p> Open your browser console to see results.</p>
+
+  <script>
+
+    class Vehicle {
+      constructor(brand, model, year) {
+        this.brand = brand;
+        this.model = model;
+        this.year = year;
+      }
+      getInfo() {
+        return `${this.brand} ${this.model} (${this.year})`;
+      }
+      isOld() {
+        let currentYear = new Date().getFullYear();
+        return (currentYear - this.year) > 10;
+      }
+    }
+
+    class Car extends Vehicle {
+      constructor(brand, model, year, fuelType) {
+        super(brand, model, year);
+        this.fuelType = fuelType;
+      }
+      getInfo() {
+        return `${this.brand} ${this.model} (${this.year}) - Fuel: ${this.fuelType}`;
+      }
+    }
+
+    const car1 = new Car("Toyota", "Camry", 2006, "Petrol");
+    const car2 = new Car("Gac", "Model 3", 2023, "Electric");
+    const car3 = new Car("Toyota", "Hilux", 2024, "Petrol");
+    console.log("---- Vehicle Info ----");
+    console.log(car1.getInfo(), "→ Is old?", car1.isOld());
+    console.log(car2.getInfo(), "→ Is old?", car2.isOld());
+    console.log(car3.getInfo(), "→ Is old?", car3.isOld());
+
+  </script>
+
+</body>
+</html>

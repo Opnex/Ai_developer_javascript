@@ -1,0 +1,56 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Book Class</title>
+
+  <style>
+    *{
+        margin: 0;
+        padding: 0;
+        box-sizing: border-box;
+    }
+
+    body {
+
+        background-color: rgb(247, 225, 198);
+        text-align: center;
+        margin: 20px;
+    }
+  </style>
+</head>
+<body>
+
+  <h1>Book class with properties</h1>
+  <p> Open your browser console to see results.</p>
+
+  <script>
+    // Define the Book class
+    class Book {
+      constructor(title, author, year, isBorrowed = false,) {
+        this.title = title;
+        this.author = author;
+        this.year = year;
+        this.isBorrowed = isBorrowed;
+      }
+      // Method to get a summary of the book
+      getSummary() {
+        return `Book: ${this.title} by ${this.author} (${this.year})`;
+      }
+    }
+    // Create Book objects
+    const book1 = new Book("To Kill a Mockingbird", "Harper Lee", 1960);
+    const book2 = new Book("The Great Gatsby", "F. Scott Fitzgerald", 1925);
+    const book3 = new Book("The Hunger Games", "Suzanne Collins", 2008);
+    // Log summaries to the console
+    console.log(book1.getSummary());
+    console.log(`Borrowed? ${book1.isBorrowed}`);
+    console.log(book2.getSummary());
+    console.log(`Borrowed? ${book2.isBorrowed}`);
+    console.log(book3.getSummary());
+    console.log(`Borrowed? ${book3.isBorrowed}`)
+    
+  </script>
+</body>
+</html>

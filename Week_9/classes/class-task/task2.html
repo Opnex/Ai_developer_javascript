@@ -1,0 +1,54 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+
+    <style>
+        *{
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        body {
+            background-color: rgb(247, 223, 191);
+            text-align: center;
+            margin: 20px;
+        }
+    </style>
+</head>
+<body>
+  <h1>Student Report Card</h1>
+  <p> Open your browser console to see results.</p>
+
+  <script>
+    class Student {
+      constructor(name, age, grades) {
+        this.name = name;
+        this.age = age;
+        this.grades = grades;
+      }
+      calculateAverage() {
+        let total = this.grades.reduce((sum, grade) => sum + grade, 0);
+        return total / this.grades.length;
+      }
+      getResult() {
+        let avg = this.calculateAverage();
+        let status = avg >= 50 ? "Passed" : "Failed";
+        return `${this.name}'s average is ${avg.toFixed(2)} → ${status}`;
+      }
+    }
+    // Testing
+    const student1 = new Student("Toluwani", 27, [47, 53, 49, 50]);
+    const student2 = new Student("Iremide", 3, [99, 98, 98, 99]);
+    const student3 = new Student("Opemipo", 15, [45, 53, 48, 55]);
+    console.log("---- Student Report Card ----");
+    console.log(student1.getResult());
+    console.log(student2.getResult());
+    console.log(student3.getResult());
+  </script>
+
+</body>
+</html>
