@@ -1,0 +1,151 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+<body>
+    <script>
+        // Base class - common functionality for all menu items
+class MenuItem {
+    constructor(id, name, price, category) {
+        this.id = id;
+        this.name = name;
+        this.price = price;
+        this.category = category;
+        this.dateAdded = new Date();
+    }
+    
+    getDisplayInfo() {
+        return `${this.name} - $${this.price.toFixed(2)}`;
+    }
+    
+    updatePrice(newPrice) {
+        this.price = newPrice;
+        return `Updated ${this.name} price to $${newPrice.toFixed(2)}`;
+    }
+}
+
+// Specialized class for drinks - inherits from MenuItem
+class DrinkItem extends MenuItem {
+    constructor(id, name, price, size, temperature, hasCaffeine = false) {
+        super(id, name, price, "Drinks"); // Call parent constructor
+        this.size = size;
+        this.temperature = temperature;
+        this.hasCaffeine = hasCaffeine;
+    }
+    
+    // Override parent method
+    getDisplayInfo() {
+        let caffeineInfo = this.hasCaffeine ? "☕ Caffeinated" : "Caffeine-free";
+        return `${this.name} (${this.size}, ${this.temperature}) - $${this.price.toFixed(2)} - ${caffeineInfo}`;
+    }
+    
+    // New methods specific to drinks
+    changeTemperature(newTemp) {
+        this.temperature = newTemp;
+        return `${this.name} temperature changed to ${newTemp}`;
+    }
+    
+    upsize() {
+        if (this.size === "Small") {
+            this.size = "Medium";
+            this.price += 0.50;
+        } else if (this.size === "Medium") {
+            this.size = "Large";
+            this.price += 0.75;
+        } else {
+            return `${this.name} is already Large size`;
+        }
+        
+        return `Upsized ${this.name} to ${this.size} - New price: $${this.price.toFixed(2)}`;
+    }
+}
+
+// Specialized class for food items
+class FoodItem extends MenuItem {
+    constructor(id, name, price, servingSize, isVegetarian = false, allergens = []) {
+        super(id, name, price, "Food"); // Call parent constructor
+        this.servingSize = servingSize;
+        this.isVegetarian = isVegetarian;
+        this.allergens = allergens;
+        this.spiceLevel = "Mild";
+    }
+    
+    // Override parent method
+    getDisplayInfo() {
+        let vegInfo = this.isVegetarian ? "🌱 Vegetarian" : "🥩 Contains meat";
+        let allergenInfo = this.allergens.length > 0 ? ` ⚠️ Contains: ${this.allergens.join(", ")}` : "";
+        return `${this.name} (${this.servingSize}) - $${this.price.toFixed(2)} - ${vegInfo}${allergenInfo}`;
+    }
+    
+    // New methods specific to food
+    setSpiceLevel(level) {
+        let validLevels = ["Mild", "Medium", "Hot", "Extra Hot"];
+        if (validLevels.includes(level)) {
+            this.spiceLevel = level;
+            return `Set ${this.name} spice level to ${level}`;
+        }
+        return "Invalid spice level";
+    }
+    
+    addAllergen(allergen) {
+        if (!this.allergens.includes(allergen)) {
+            this.allergens.push(allergen);
+            return `Added ${allergen} to ${this.name} allergen list`;
+        }
+        return `${allergen} already in allergen list`;
+    }
+    
+    checkSafeForAllergy(allergen) {
+        return !this.allergens.includes(allergen);
+    }
+}
+
+// Create specialized objects
+let latte = new DrinkItem(1, "Vanilla Latte", 4.25, "Medium", "Hot", true);
+let icedTea = new DrinkItem(2, "Green Iced Tea", 2.75, "Large", "Cold", false);
+
+let burger = new FoodItem(3, "Veggie Burger", 11.50, "Regular", true, ["Gluten", "Soy"]);
+let pasta = new FoodItem(4, "Spicy Pasta", 13.99, "Large", true, ["Gluten"]);
+
+console.log("Specialized menu items:");
+console.log(latte.getDisplayInfo());
+console.log(icedTea.getDisplayInfo());
+console.log(burger.getDisplayInfo());
+console.log(pasta.getDisplayInfo());
+
+console.log(""); // Empty line
+
+console.log("Drink-specific operations:");
+console.log(latte.upsize());
+console.log(latte.changeTemperature("Iced"));
+console.log("Updated latte:", latte.getDisplayInfo());
+
+console.log(""); // Empty line
+
+console.log("Food-specific operations:");
+console.log(pasta.setSpiceLevel("Extra Hot"));
+console.log(burger.addAllergen("Nuts"));
+console.log("Safe for gluten allergy:", pasta.checkSafeForAllergy("Gluten"));
+console.log("Safe for nuts allergy:", burger.checkSafeForAllergy("Nuts"));
+
+console.log(""); // Empty line
+
+console.log("Inherited methods still work:");
+console.log(latte.updatePrice(4.75));
+console.log(burger.updatePrice(12.00));
+
+
+// **Inheritance Key Concepts:**
+// - `extends` keyword creates a child class
+// - `super()` calls the parent constructor
+// - Child classes inherit all parent methods and properties
+// - Child classes can override parent methods
+// - Child classes can add their own methods
+// - Use inheritance when you have "is-a" relationships (DrinkItem IS-A MenuItem)
+
+    </script>
+</body>
+</html>

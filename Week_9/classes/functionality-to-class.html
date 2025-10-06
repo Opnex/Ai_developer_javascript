@@ -1,0 +1,131 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+<body>
+    <script>
+        // ## Adding More Functionality to Classes
+
+
+class MenuItem {
+    constructor(id, name, price, category, description = "") {
+        this.id = id;
+        this.name = name;
+        this.price = price;
+        this.category = category;
+        this.description = description;
+        this.dateAdded = new Date();
+        this.isAvailable = true;
+        this.timesOrdered = 0;
+    }
+    
+    // Display methods
+    getDisplayInfo() {
+        let status = this.isAvailable ? "Available" : "Sold Out";
+        return `${this.name} - $${this.price.toFixed(2)} (${status})`;
+    }
+    
+    getFullDetails() {
+        return {
+            id: this.id,
+            name: this.name,
+            price: this.price,
+            category: this.category,
+            description: this.description,
+            available: this.isAvailable,
+            popularity: this.getPopularityLevel()
+        };
+    }
+    
+    // Business logic methods
+    updatePrice(newPrice) {
+        if (newPrice <= 0) {
+            return "Price must be greater than 0";
+        }
+        
+        let oldPrice = this.price;
+        this.price = newPrice;
+        return `${this.name}: $${oldPrice.toFixed(2)} → $${newPrice.toFixed(2)}`;
+    }
+    
+    markUnavailable() {
+        this.isAvailable = false;
+        return `${this.name} is now marked as unavailable`;
+    }
+    
+    markAvailable() {
+        this.isAvailable = true;
+        return `${this.name} is now available`;
+    }
+    
+    recordOrder() {
+        if (!this.isAvailable) {
+            return `Cannot order ${this.name} - currently unavailable`;
+        }
+        
+        this.timesOrdered++;
+        return `Ordered ${this.name}. Total orders: ${this.timesOrdered}`;
+    }
+    
+    getPopularityLevel() {
+        if (this.timesOrdered >= 50) return "Very Popular";
+        if (this.timesOrdered >= 20) return "Popular";
+        if (this.timesOrdered >= 5) return "Moderate";
+        return "New";
+    }
+    
+    applyDiscount(percentage) {
+        if (percentage < 0 || percentage > 100) {
+            return "Discount must be between 0 and 100 percent";
+        }
+        
+        let discountAmount = this.price * (percentage / 100);
+        let newPrice = this.price - discountAmount;
+        this.price = newPrice;
+        
+        return `Applied ${percentage}% discount to ${this.name}. New price: $${newPrice.toFixed(2)}`;
+    }
+}
+
+// Test the enhanced class
+let latte = new MenuItem(1, "Caramel Latte", 5.50, "Drinks", "Rich espresso with caramel syrup");
+let burger = new MenuItem(2, "Beef Burger", 13.99, "Food", "Juicy beef patty with fresh toppings");
+
+console.log("Menu items created:");
+console.log(latte.getDisplayInfo());
+console.log(burger.getFullDetails());
+
+console.log(""); // Empty line
+
+console.log("Testing business logic:");
+console.log(latte.recordOrder());
+console.log(latte.recordOrder());
+console.log(latte.recordOrder());
+console.log(latte.recordOrder());
+console.log(latte.recordOrder());
+console.log("Latte popularity:", latte.getPopularityLevel());
+
+console.log(""); // Empty line
+
+console.log(burger.markUnavailable());
+console.log(burger.recordOrder()); // Should fail
+
+console.log(""); // Empty line
+
+console.log(latte.applyDiscount(20));
+console.log(latte.getDisplayInfo());
+
+
+// **Advanced Class Features:**
+// - Default parameters in constructor
+// - Multiple methods with different purposes
+// - Methods that call other methods
+// - Conditional logic within methods
+// - Object state management (available/unavailable, order count)
+
+    </script>
+</body>
+</html>

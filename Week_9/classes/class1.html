@@ -1,0 +1,50 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+<body>
+    <script>
+        // Creating menu items the hard way - lots of repetition
+let coffee = {
+    id: 1,
+    name: "Coffee",
+    price: 3.50,
+    category: "Drinks",
+    getDisplayInfo: function() {
+        return `${this.name} - $${this.price}`;
+    },
+    updatePrice: function(newPrice) {
+        this.price = newPrice;
+    }
+};
+
+let sandwich = {
+    id: 2,
+    name: "Sandwich", 
+    price: 8.00,
+    category: "Food",
+    getDisplayInfo: function() {
+        return `${this.name} - $${this.price}`;  // Same code repeated!
+    },
+    updatePrice: function(newPrice) {           // Same code repeated!
+        this.price = newPrice;
+    }
+};
+
+// And you'd repeat this for every menu item...
+
+// **Problems with this approach:**
+// - Lots of repeated code
+// - Easy to make mistakes
+// - Hard to maintain (if you change one method, you have to change it everywhere)
+// - No guarantee all items have the same structure
+
+// **Classes solve this by providing a template for creating similar objects.**
+//     
+
+    </script>
+// </body>
+</html>

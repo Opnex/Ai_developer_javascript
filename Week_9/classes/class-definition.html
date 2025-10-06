@@ -1,0 +1,74 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Class definition</title>
+</head>
+<body>
+    
+    <script>
+
+// Class definition - a template for creating menu items
+class MenuItem {
+    // Constructor - runs when you create a new object
+    constructor(id, name, price, category) {
+        this.id = id;
+        this.name = name;
+        this.price = price;
+        this.category = category;
+        this.dateAdded = new Date().toISOString(); // Automatically set
+    }
+    
+    // Method - a function that belongs to this class
+    getDisplayInfo() {
+        return `${this.name} - $${this.price.toFixed(2)}`;
+    }
+    
+    updatePrice(newPrice) {
+        if (newPrice > 0) {
+            this.price = newPrice;
+            return `Updated ${this.name} price to $${newPrice.toFixed(2)}`;
+        }
+        return "Price must be greater than 0";
+    }
+    
+    isExpensive() {
+        return this.price > 10;
+    }
+}
+
+// Creating objects using the class
+let coffee = new MenuItem(1, "Latte", 4.50, "Drinks");
+let sandwich = new MenuItem(2, "Club Sandwich", 12.99, "Food");
+let dessert = new MenuItem(3, "Chocolate Cake", 6.50, "Desserts");
+
+console.log("Created menu items:");
+console.log(coffee.getDisplayInfo());
+console.log(sandwich.getDisplayInfo());
+console.log(dessert.getDisplayInfo());
+
+console.log(""); // Empty line
+
+console.log("Price updates:");
+console.log(coffee.updatePrice(5.00));
+console.log(sandwich.updatePrice(-2)); // This should fail
+
+console.log(""); // Empty line
+
+console.log("Expensive items:");
+console.log(`${coffee.name} is expensive: ${coffee.isExpensive()}`);
+console.log(`${sandwich.name} is expensive: ${sandwich.isExpensive()}`);
+console.log(`${dessert.name} is expensive: ${dessert.isExpensive()}`);
+
+
+// **Key Class Concepts:**
+// - `class` keyword defines the template
+// - `constructor` runs automatically when creating new objects
+// - Methods are functions that all objects created from this class will have
+// - `new` keyword creates a new object from the class
+// - `this` refers to the specific object being used
+
+    </script>
+</body>
+</html>
