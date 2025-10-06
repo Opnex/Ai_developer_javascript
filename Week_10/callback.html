@@ -1,0 +1,37 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+<body>
+    <script>
+    //     ## Callbacks - The First Way
+
+    //     ### What is a Callback?
+
+    // A callback is a function you pass to another function to be called later.
+
+    // Simple callback example
+    function greetUser(name, callback) {
+        console.log("Hello, " + name)
+        callback(); // Call the function that was passed in
+    }
+
+    function sayGoodbye() {
+        console.log("Goodbye!");
+    }
+
+    // Pass sayGoodbye as a callback
+    greetUser("Alice", sayGoodbye)
+
+    // Output:
+    // Hello, Alice
+    // Goodbye!
+
+
+    
+    </script>
+</body>
+</html>

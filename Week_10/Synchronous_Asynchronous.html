@@ -1,0 +1,36 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+<body>
+    <script>
+        // SYNCHRONOUS (blocking) - Everything waits
+    console.log("Step 1: Start Cooking");
+
+    // Simulate waiting 5 minutes (blocking loop)
+    for (let i = 0; i < 1e10; i++) {}
+
+    console.log("Step 2: Food ready");
+    console.log("Step 3: Serve Customer");
+
+    // OutPut
+    console.log("Step 1: Start cooking");
+    console.log("Step 2: Wait 5 minutes..."); // Website freezes here
+    console.log("Step 3: Food ready");
+    console.log("Step 4: Serve customer");
+
+    // ASYNCHRONOUS (non-blocking) - Life continues while waiting
+    console.log("Step 1: Start cooking");
+
+    setTimeout(() => {
+        console.log("Step 3: Food ready after 5 minutes");
+    }, 5000); // This doesn't freeze the website
+
+    console.log("Step 2: Serve other customers while waiting");
+    console.log("Step 4: Take more orders");
+    </script>
+</body>
+</html>

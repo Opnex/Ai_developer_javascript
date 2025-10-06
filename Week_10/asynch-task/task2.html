@@ -1,0 +1,40 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+<body>
+    <script>
+                //         ## 🎯 Practice Exercise 2
+                // **Task:** Random delivery success or failure.  
+                // - Write a function `deliverOrder(order)` that waits 2 seconds.  
+                // - 50% of the time, resolve with `"✅ Delivered: <order>"`.  
+                // - 50% of the time, reject with `"❌ Delivery failed: <order>"`.  
+                // - Use `.then()` and `.catch()` to handle both cases.
+        
+        function deliverOrder(order) {
+            return new Promise((resolve, reject) => {
+                setTimeout(() => {
+                    let success = Math.random() > 0.5;
+
+                    if (success) {
+                        resolve("Delivered successfully", order);
+                    } else {
+                        reject("Order Failed");
+                    }
+                }, 2000);
+            });
+            }
+        deliverOrder("Fufu") 
+            .then(function(message) {
+              console.log("Message: ", message);  
+            })
+
+            .catch(function(fail) {
+                console.log("Message: ", fail);
+            })
+    </script>
+</body>
+</html>

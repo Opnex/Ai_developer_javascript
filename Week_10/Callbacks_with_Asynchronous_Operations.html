@@ -1,0 +1,36 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+<body>
+    <script>
+        // Simulate getting data from a server
+        function getMenuItems(callback) {
+            console.log("Fetching menu items...");
+
+           // Simulate 2 second delay
+           setTimeout(() => {
+            let menuItems = ["Coffee","Sandwich", "Cake"];
+            callback(menuItems); // Call the callback with the data
+           }, 2000);
+        }
+
+                // Use the function
+        getMenuItems(function(items) {
+            console.log("Got menu items:", items);
+        });
+
+        console.log("Doing other things while waiting...");
+
+        // Output:
+        // Fetching menu items...
+        // Doing other things while waiting...
+        // (2 seconds pass)
+        // Got menu items: ["Coffee", "Sandwich", "Cake"]
+
+    </script>
+</body>
+</html>

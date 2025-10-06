@@ -1,0 +1,34 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+<body>
+    <script>
+            //         ## 🎯 Practice Exercise 1
+            // **Task:** Tell a delayed joke with Promises. 
+            
+            // - Write a function `tellJoke()` that returns a Promise.  
+            // - After 3 seconds, resolve with `"😂 Here’s a funny joke!"`.  
+            // - Test it using `.then()`.
+
+    function tellJoke() {
+        return new Promise(function(resolve) {
+            console.log("Waiting for joke");
+
+            setTimeout(() => {
+                let joke = ("I used to love Esther, she was busy doing shakara then i moved on with another Damsel beside her and now she's crying for love from me but guess what! Otilo ");
+                resolve(joke)
+            }, 3000);
+        })
+    }
+
+    tellJoke()
+        .then(function(joke) {
+           console.log("My funny Joke: ", joke);
+        })
+    </script>
+</body>
+</html>

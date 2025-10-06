@@ -1,0 +1,253 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+<body>
+    <script>
+            // User class for authentication
+    class User {
+        constructor(username, password, role = "customer") {
+            this.username = username;
+            this.password = password; // In real apps, this would be encrypted!
+            this.role = role;
+            this.loginTime = null;
+        }
+
+        authenticate(password) {
+            return this.password === password;
+        }
+        
+        login() {
+            this.loginTime = new Date();
+            return `${this.username} logged in as ${this.role}`;
+        }
+        
+        logout() {
+            this.loginTime = null;
+            return `${this.username} logged out`;
+        }
+        
+        isLoggedIn() {
+            return this.loginTime !== null;
+        }
+    }
+
+    // Order class to manage customer orders
+    class Order {
+        static orderCounter = 1;
+        
+        constructor(customerName, items = []) {
+            this.id = Order.orderCounter++;
+            this.customerName = customerName;
+            this.items = [...items]; // Copy array
+            this.orderTime = new Date();
+            this.status = "pending";
+            this.total = this.calculateTotal();
+        }
+        
+        addItem(menuItem, quantity = 1) {
+            // Check if item already in order
+            let existingItem = this.items.find(item => item.menuItem.id === menuItem.id);
+            
+            if (existingItem) {
+                existingItem.quantity += quantity;
+            } else {
+                this.items.push({
+                    menuItem: menuItem,
+                    quantity: quantity,
+                    itemTotal: menuItem.price * quantity
+                });
+            }
+            
+            this.total = this.calculateTotal();
+            return `Added ${quantity}x ${menuItem.name} to order`;
+        }
+        
+        removeItem(menuItemId) {
+            this.items = this.items.filter(item => item.menuItem.id !== menuItemId);
+            this.total = this.calculateTotal();
+            return "Item removed from order";
+        }
+        
+        calculateTotal() {
+            return this.items.reduce((total, item) => {
+                return total + (item.menuItem.price * item.quantity);
+            }, 0);
+        }
+        
+        updateStatus(newStatus) {
+            let validStatuses = ["pending", "preparing", "ready", "delivered", "cancelled"];
+            if (validStatuses.includes(newStatus)) {
+                this.status = newStatus;
+                return `Order ${this.id} status updated to ${newStatus}`;
+            }
+            return "Invalid status";
+        }
+        
+        getOrderSummary() {
+            return {
+                orderId: this.id,
+                customer: this.customerName,
+                items: this.items.map(item => ({
+                    name: item.menuItem.name,
+                    quantity: item.quantity,
+                    price: item.menuItem.price,
+                    subtotal: item.menuItem.price * item.quantity
+                })),
+                total: this.total,
+                status: this.status,
+                orderTime: this.orderTime.toLocaleString()
+            };
+        }
+    }
+
+    // Complete Café Management System
+    class CafeManager {
+        constructor() {
+            this.menuItems = [];
+            this.users = [];
+            this.orders = [];
+            this.currentUser = null;
+            
+            // Create default admin user
+            this.users.push(new User("admin", "cafe123", "staff"));
+            this.users.push(new User("manager", "manager123", "manager"));
+        }
+        
+        // User management
+        login(username, password) {
+            let user = this.users.find(u => u.username === username);
+            if (user && user.authenticate(password)) {
+                this.currentUser = user;
+                user.login();
+                return { success: true, message: `Welcome ${username}!`, role: user.role };
+            }
+            return { success: false, message: "Invalid credentials" };
+        }
+        
+        logout() {
+            if (this.currentUser) {
+                let message = this.currentUser.logout();
+                this.currentUser = null;
+                return message;
+            }
+            return "No user logged in";
+        }
+        
+        // Menu management
+        addMenuItem(menuItem) {
+            this.menuItems.push(menuItem);
+            return `Added ${menuItem.name} to menu`;
+        }
+        
+        removeMenuItem(itemId) {
+            this.menuItems = this.menuItems.filter(item => item.id !== itemId);
+            return "Menu item removed";
+        }
+        
+        getMenuByCategory(category) {
+            return this.menuItems.filter(item => item.category === category);
+        }
+        
+        searchMenu(searchTerm) {
+            return this.menuItems.filter(item => 
+                item.name.toLowerCase().includes(searchTerm.toLowerCase())
+            );
+        }
+        
+        // Order management
+        createOrder(customerName) {
+            let order = new Order(customerName);
+            this.orders.push(order);
+            return order;
+        }
+        
+        getOrderById(orderId) {
+            return this.orders.find(order => order.id === orderId);
+        }
+        
+        getOrdersByStatus(status) {
+            return this.orders.filter(order => order.status === status);
+        }
+        
+        // Analytics
+        getTotalRevenue() {
+            return this.orders
+                .filter(order => order.status === "delivered")
+                .reduce((total, order) => total + order.total, 0);
+        }
+        
+        getMostPopularItems() {
+            let itemCounts = {};
+            
+            this.orders.forEach(order => {
+                order.items.forEach(item => {
+                    let itemName = item.menuItem.name;
+                    itemCounts[itemName] = (itemCounts[itemName] || 0) + item.quantity;
+                });
+            });
+            
+            return Object.entries(itemCounts)
+                .sort(([,a], [,b]) => b - a)
+                .slice(0, 5);
+        }
+    }
+
+        // Test the complete system
+        console.log("=== CAFÉ MANAGEMENT SYSTEM DEMO ===");
+
+        let cafe = new CafeManager();
+
+        // Create menu items using different classes
+        let latte = new DrinkItem(1, "Caramel Latte", 4.50, "Medium", "Hot", true);
+        let sandwich = new FoodItem(2, "Club Sandwich", 9.99, "Regular", false, ["Gluten"]);
+        let muffin = new MenuItem(3, "Blueberry Muffin", 3.25, "Desserts");
+
+        cafe.addMenuItem(latte);
+        cafe.addMenuItem(sandwich);
+        cafe.addMenuItem(muffin);
+
+        console.log("Menu items added to system");
+        console.log(""); // Empty line
+
+        // Test login
+        let loginResult = cafe.login("admin", "cafe123");
+        console.log("Login result:", loginResult.message);
+
+        console.log(""); // Empty line
+
+        // Create and process order
+        let order = cafe.createOrder("John Smith");
+        console.log(order.addItem(latte, 2));
+        console.log(order.addItem(sandwich, 1));
+        console.log(order.addItem(muffin, 1));
+
+        console.log(""); // Empty line
+
+        console.log("Order Summary:");
+        let summary = order.getOrderSummary();
+        console.log(`Order #${summary.orderId} for ${summary.customer}`);
+        summary.items.forEach(item => {
+            console.log(`  ${item.quantity}x ${item.name} - $${item.subtotal.toFixed(2)}`);
+        });
+        console.log(`Total: $${summary.total.toFixed(2)}`);
+
+        console.log(""); // Empty line
+
+        // Update order status
+        console.log(order.updateStatus("preparing"));
+        console.log(order.updateStatus("ready"));
+        console.log(order.updateStatus("delivered"));
+
+        console.log(""); // Empty line
+
+        // Analytics
+        console.log("Total Revenue:", `$${cafe.getTotalRevenue().toFixed(2)}`);
+        console.log("Most Popular Items:", cafe.getMostPopularItems());
+
+    </script>
+</body>
+</html>

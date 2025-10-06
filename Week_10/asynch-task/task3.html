@@ -1,0 +1,37 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+<body>
+    <script>
+                //         ## 🎯 Practice Exercise 3 
+                // **Task:** Process an order queue.  
+                // - Create an array of orders: `["Coffee", "Cake", "Juice"]`.  
+                // - Write an `async` function that loops through the array.  
+                // - Prepares each order with a 2-second delay.  
+                // - Logs `"✅ <order> ready"` in sequence. 
+
+        let queue = ["Coffee", "Cake", "Juice"];
+
+        async function processOrders() {
+        for (let order of queue) {
+            await prepareOrder(order);
+            console.log(`${order} ready`);
+        }
+        }
+
+        function prepareOrder(order) {
+        return new Promise(resolve => {
+            setTimeout(() => {
+            resolve();
+            }, 2000);
+        });
+        }
+        processOrders();
+
+    </script>
+</body>
+</html>
