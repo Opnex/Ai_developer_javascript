@@ -1,0 +1,70 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+<body>
+    <script>
+                        // ### JSON Rules
+
+
+// VALID JSON
+let validJSON = `{
+    "name": "Coffee",
+    "price": 3.50,
+    "available": true,
+    "tags": ["hot", "beverage"]
+}`;
+
+// INVALID JSON - Common Mistakes
+
+// ❌ Single quotes (must use double quotes)
+let invalid1 = "{'name': 'Coffee'}";
+
+// ❌ Trailing comma
+let invalid2 = '{"name": "Coffee", "price": 3.50,}';
+
+// ❌ No quotes on keys
+let invalid3 = '{name: "Coffee"}';
+
+// ❌ Undefined values
+let invalid4 = '{"name": "Coffee", "value": undefined}';
+
+// ❌ Functions
+let invalid5 = '{"name": "Coffee", "prepare": function() {}}';
+
+// Test parsing
+try {
+    JSON.parse(validJSON);
+    console.log("Valid JSON parsed successfully!");
+} catch (error) {
+    console.log("Error:", error.message);
+}
+
+try {
+    JSON.parse(invalid1);
+} catch (error) {
+    console.log("Invalid JSON error:", error.message);
+}
+
+
+        // **JSON Only Supports:**
+        // - Strings (with double quotes)
+        // - Numbers
+        // - Booleans (true/false)
+        // - null
+        // - Arrays
+        // - Objects
+
+        // **JSON Does NOT Support:**
+        // - Functions
+        // - undefined
+        // - Dates (store as strings)
+        // - Single quotes
+        // - Trailing commas
+
+    </script>
+</body>
+</html>

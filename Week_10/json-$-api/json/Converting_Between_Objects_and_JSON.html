@@ -1,0 +1,67 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+<body>
+    <script>
+                        // JSON.stringify() - Object to JSON
+            // Convert JavaScript object to JSON string
+        let menuItem = {
+            id: 1,
+            name: "Latte",
+            price: 4.50,
+            category: "Drink",
+            available: true
+        };
+
+            // Convert to JSON
+        let jsonString = JSON.stringify(menuItem)
+
+        console.log("Original object:", menuItem);
+        console.log("Original object:", typeof menuItem);
+        console.log("JSON string:", jsonString);
+        console.log("Type of JSON:", typeof jsonString);
+
+           
+            // JSON is perfect for sending to servers
+        console.log("\nSending to server:", jsonString);
+
+            
+            // Convert JSON string to JavaScript object
+        let jsonFromServer = '{"id":2,"name":"Sandwich","price":8.00,"available":true}';
+
+        console.log("\nJSON from server:", jsonFromServer);
+        console.log("Type:", typeof jsonFromServer);
+
+            // Parse it back to object
+        let menuItems = JSON.parse(jsonFromServer);
+
+        console.log("\nParsed object:", menuItems);
+        console.log("Type:", typeof menuItems);
+        console.log("Can use it now:", menuItems.name); // "Sandwich"
+        console.log("Price:", menuItems.price); // 8.00
+
+
+                // ### Pretty-Printing JSON
+
+        let order = {
+            orderId: 12345,
+            customer: "Bob Smith",
+            items: ["Coffee", "Sandwich"],
+            total: 12.50
+        };
+
+        // Compact JSON (one line)
+        let compact = JSON.stringify(order);
+        console.log("Compact:", compact);
+
+        // Pretty JSON (readable, with indentation)
+        let pretty = JSON.stringify(order, null, 2);
+        console.log("\nPretty:\n", pretty);
+
+    </script>
+</body>
+</html>

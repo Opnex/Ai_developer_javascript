@@ -1,0 +1,96 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+<body>
+    <script>
+            //         ## Using fetch() to Get Data
+
+            // ### Basic fetch() Example
+
+        // Get data from an API
+
+        async function getQuote() {
+            try {
+                // Make request to API
+                let response = await fetch('https://api.quotable.io/random');
+                
+                // Convert response to JavaScript object
+                let data = await response.json();
+                
+                // Use the data
+                console.log("Quote:", data.content);
+                console.log("Author:", data.author);
+                
+            } catch (error) {
+                console.log("Error:", error);
+            }
+        }
+
+        getQuote();
+
+//             // If you didn’t use async and await, your code would look like this:
+//                             // Using Promise instead of async
+        function getQuote() {
+        fetch('https://api.quotable.io/random')
+            .then(response => response.json())
+            .then(data => {
+            console.log("Quote:", data.content);
+            console.log("Author:", data.author);
+            })
+            .catch(error => console.log("Error:", error));
+        }
+
+        getQuote();
+
+
+//                         // ### Understanding fetch() Step by Step
+            
+            async function getData() {
+                // Step 1: Make the request
+                console.log("Step 1: Sending request...");
+                let response = await fetch('https://api.quotable.io/random');
+                
+                console.log("Step 2: Got response");
+                console.log("Status:", response.status); // 200 means success
+                console.log("OK:", response.ok); // true if successful
+                
+                // Step 3: Convert JSON to JavaScript object
+                console.log("Step 3: Converting JSON...");
+                let data = await response.json();
+                
+                // Step 4: Use the data
+                console.log("Step 4: Using data");
+                console.log("Data:", data);
+            }
+
+            getData();
+
+                            
+            
+                        // ### Checking for Errors
+
+        async function getDataSafely() {
+            try {
+                let response = await fetch('https://api.quotable.io/random');
+                
+                // Check if request was successful
+                if (!response.ok) {
+                    throw new Error(`HTTP error! Status: ${response.status}`);
+                }
+                
+                let data = await response.json();
+                console.log("Success:", data);
+                
+            } catch (error) {
+                console.log("Something went wrong:", error.message);
+            }
+        }
+
+getDataSafely();
+    </script>
+</body>
+</html>

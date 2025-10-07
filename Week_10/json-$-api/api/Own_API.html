@@ -1,0 +1,121 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+<body>
+    <script>
+        // When you have your own café API, use these patterns:
+
+// 1. Get all menu items
+async function getMenuItems() {
+    try {
+        let response = await fetch('https://your-api.com/api/menu');
+        
+        if (!response.ok) {
+            throw new Error('Failed to load menu');
+        }
+        
+        let menuItems = await response.json();
+        return menuItems;
+        
+    } catch (error) {
+        console.log('Error:', error);
+        return [];
+    }
+}
+
+// 2. Add new menu item (POST request)
+async function addMenuItem(itemData) {
+    try {
+        let response = await fetch('https://your-api.com/api/menu', {
+            method: 'POST',
+            headers: {
+                'Content-Type': 'application/json'
+            },
+            body: JSON.stringify(itemData)
+        });
+        
+        if (!response.ok) {
+            throw new Error('Failed to add item');
+        }
+        
+        let result = await response.json();
+        console.log('Item added:', result);
+        return result;
+        
+    } catch (error) {
+        console.log('Error:', error);
+        return null;
+    }
+}
+
+// 3. Update menu item (PUT request)
+async function updateMenuItem(itemId, newData) {
+    try {
+        let response = await fetch(`https://your-api.com/api/menu/${itemId}`, {
+            method: 'PUT',
+            headers: {
+                'Content-Type': 'application/json'
+            },
+            body: JSON.stringify(newData)
+        });
+        
+        if (!response.ok) {
+            throw new Error('Failed to update item');
+        }
+        
+        let result = await response.json();
+        return result;
+        
+    } catch (error) {
+        console.log('Error:', error);
+        return null;
+    }
+}
+
+// 4. Delete menu item (DELETE request)
+async function deleteMenuItem(itemId) {
+    try {
+        let response = await fetch(`https://your-api.com/api/menu/${itemId}`, {
+            method: 'DELETE'
+        });
+        
+        if (!response.ok) {
+            throw new Error('Failed to delete item');
+        }
+        
+        console.log('Item deleted');
+        return true;
+        
+    } catch (error) {
+        console.log('Error:', error);
+        return false;
+    }
+}
+
+// Example usage:
+async function manageMenu() {
+    // Get all items
+    let items = await getMenuItems();
+    console.log('Menu items:', items);
+    
+    // Add new item
+    let newItem = await addMenuItem({
+        name: "Green Tea",
+        price: 2.50,
+        category: "Drinks"
+    });
+    
+    // Update item
+    if (newItem) {
+        await updateMenuItem(newItem.id, {
+            price: 3.00
+        });
+    }
+}
+    </script>
+</body>
+</html>

@@ -1,0 +1,45 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+    <link rel="icon" href="/Week_9/set-time-out/set-time-out-tasks/images/BARCA-images.jpg"  type="image/x-icon">
+</head>
+<body>
+                    <!-- ##  What is JSON?
+
+                ### JSON = JavaScript Object Notation
+
+                JSON is a way to store and transfer data as text. It looks like JavaScript objects but is actually a string.
+
+                **Why JSON?**
+                - Send data between your website and servers
+                - Store data in files
+                - Share data between different programming languages
+                - Standard format used by almost all APIs -->
+
+        <script>
+            // ### JavaScript Object vs JSON
+
+
+        // JavaScript Object (actual object in memory)
+        let person = {
+            name: "Alice",
+            age: 25,
+            city: "Lagos"
+        };
+
+        console.log("JavaScript object:", person);
+        console.log("Type:", typeof person); // "object"
+        console.log("Can access:", person.name); // "Alice"
+
+        // JSON (string representation)
+        let personJSON = '{"name":"Alice","age":25,"city":"Lagos"}';
+
+        console.log("JSON string:", personJSON);
+        console.log("Type:", typeof personJSON); // "string"
+        console.log(personJSON.name); // undefined - it's just text!
+        </script>
+</body>
+</html>
