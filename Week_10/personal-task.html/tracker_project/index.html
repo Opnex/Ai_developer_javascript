@@ -1,0 +1,79 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Student Performance Tracker</title>
+    <link rel="stylesheet" href="style.css">
+</head>
+<body>
+    <div class="container">
+        <header>
+            <h1>Opnex Student Performance Tracker</h1>
+            <p class="subtitle">Manage your students records with ease</p>
+        </header>
+        
+        <section class="form-section">
+            <h2>Add New Student</h2>
+            <form id="student-form">
+                <div class="form-grid">
+                    <div class="form-group">
+                        <label for="name">Name</label>
+                        <input type="text" id="name" required>
+                    </div>
+                    <div class="form-group">
+                        <label for="age">Age</label>
+                        <input type="number" id="age" min="14" max="30" required>
+                    </div>
+                    <div class="form-group">
+                        <label for="class">Class</label>
+                        <input type="text" id="class" required>
+                    </div>
+                    <div class="form-group">
+                        <label for="image">Image URL</label>
+                        <input type="text" id="image" required>
+                    </div>
+                    <div class="form-group">
+                        <label for="math">Math Score</label>
+                        <input type="number" id="math" min="0" max="100" required>
+                    </div>
+                    <div class="form-group">
+                        <label for="science">Science Score</label>
+                        <input type="number" id="science" min="0" max="100" required>
+                    </div>
+                    <div class="form-group">
+                        <label for="english">English Score</label>
+                        <input type="number" id="english" min="0" max="100" required>
+                    </div>
+                </div>
+                <button type="submit">Add Student</button>
+            </form>
+        </section>
+        
+        <section class="table-section">
+            <h2>Student Records</h2>
+            <div class="search-section">
+                <input type="text" id="search" class="search-box" placeholder="Search by student name...">
+            </div>
+            <table id="student-table">
+                <thead>
+                    <tr>
+                        <th>Image</th>
+                        <th>Name</th>
+                        <th>Age</th>
+                        <th>Class</th>
+                        <th>Average Score</th>
+                        <th>Performance</th>
+                        <th>Action</th>
+                    </tr>
+                </thead>
+                <tbody id="student-list">
+                    <!-- Student data here -->
+                </tbody>
+            </table>
+        </section>
+    </div>
+
+    <script src="script.js"></script>
+</body>
+</html>
