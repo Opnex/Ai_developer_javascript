@@ -29,13 +29,14 @@
         }
         
         h1 {
-            color: #2c3e50;
+            color: green;
             margin-bottom: 10px;
         }
         
         .subtitle {
-            color: #7f8c8d;
+            color: #0b0b0b;
             font-size: 1.1rem;
+            font-weight: bolder;
         }
         
         .form-section, .table-section {
@@ -43,7 +44,7 @@
         }
         
         h2 {
-            color: #3498db;
+            color: green;
             margin-bottom: 15px;
             font-size: 1.4rem;
         }
@@ -72,9 +73,16 @@
             border-radius: 5px;
             font-size: 1rem;
         }
+
+        select {
+            padding: 10px;
+            border: 1px solid #ddd;
+            border-radius: 5px;
+            font-size: 1rem;
+        }
         
         button {
-            background-color: #3498db;
+            background-color: green;
             color: white;
             border: none;
             padding: 12px 20px;
@@ -136,8 +144,8 @@
         }
         
         .good {
-            color: #f39c12;
-            font-weight: 600;
+            color:gold;
+            font-weight: bolder;
         }
         
         .needs-help {

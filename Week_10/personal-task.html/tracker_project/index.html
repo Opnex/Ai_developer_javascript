@@ -9,7 +9,7 @@
 <body>
     <div class="container">
         <header>
-            <h1>Opnex Student Performance Tracker</h1>
+            <h1>Opnex Student Performance</h1>
             <p class="subtitle">Manage your students records with ease</p>
         </header>
         
@@ -23,28 +23,47 @@
                     </div>
                     <div class="form-group">
                         <label for="age">Age</label>
-                        <input type="number" id="age" min="14" max="30" required>
+                        <input type="number" id="age" min="1" max="30" required>
                     </div>
                     <div class="form-group">
                         <label for="class">Class</label>
-                        <input type="text" id="class" required>
+                        <select id="class" required>
+                            <option value="" disabled selected>Select level</option>
+                            <option value="beginner">Beginner</option>
+                            <option value="intermediate">Intermediate</option>
+                            <option value="professional">Professional</option>
+                        </select>
                     </div>
                     <div class="form-group">
                         <label for="image">Image URL</label>
                         <input type="text" id="image" required>
                     </div>
+
                     <div class="form-group">
-                        <label for="math">Math Score</label>
-                        <input type="number" id="math" min="0" max="100" required>
+                        <label for="html">HTML Score</label>
+                        <input type="number" id="html" min="0" max="100" required>
                     </div>
+
                     <div class="form-group">
-                        <label for="science">Science Score</label>
-                        <input type="number" id="science" min="0" max="100" required>
+                        <label for="css">CSS Score</label>
+                        <input type="number" id="css" min="0" max="100" required>
                     </div>
+
                     <div class="form-group">
-                        <label for="english">English Score</label>
-                        <input type="number" id="english" min="0" max="100" required>
+                        <label for="java">Javascript Score</label>
+                        <input type="number" id="java" min="0" max="100" required>
                     </div>
+
+                    <div class="form-group">
+                        <label for="react">React Score</label>
+                        <input type="number" id="react" min="0" max="100" required>
+                    </div>
+
+                    <div class="form-group">
+                        <label for="python">Python Score</label>
+                        <input type="number" id="python" min="0" max="100" required>
+                    </div>
+                    
                 </div>
                 <button type="submit">Add Student</button>
             </form>

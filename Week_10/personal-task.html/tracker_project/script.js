@@ -1,4 +1,4 @@
-// Get DOM elements
+        // Get DOM elements
         const studentForm = document.getElementById('student-form');
         const studentList = document.getElementById('student-list');
         const searchInput = document.getElementById('search');
@@ -12,8 +12,8 @@
         }
         
         // Function to calculate average score
-        function calculateAverage(math, science, english) {
-            return Math.round((math + science + english) / 3);
+        function calculateAverage(html, css, javascript, react, python) {
+            return Math.round((html + css + javascript + react + python) / 5);
         }
         
         // Function to determine performance category
@@ -33,12 +33,12 @@
             }
             
             studentArray.forEach((student, index) => {
-                const average = calculateAverage(student.math, student.science, student.english);
+                const average = calculateAverage(student.html, student.css, student.javascript, student.react, student.python);
                 const performance = getPerformance(average);
                 
                 const row = document.createElement('tr');
                 row.innerHTML = `
-                    <td><img src="${student.image}" alt="${student.name}" class="student-img" onerror="this.src='https://via.placeholder.com/50'"></td>
+                    <td><img src="${student.image}" alt="${student.name}" class="student-img" onerror="this.src=''"></td>
                     <td>${student.name}</td>
                     <td>${student.age}</td>
                     <td>${student.class}</td>
@@ -50,7 +50,6 @@
                 studentList.appendChild(row);
             });
             
-            // Add event listeners to delete buttons
             document.querySelectorAll('.delete-btn').forEach(button => {
                 button.addEventListener('click', function() {
                     const index = parseInt(this.getAttribute('data-index'));
@@ -58,6 +57,7 @@
                 });
             });
         }
+
         
         // Function to add a new student
         function addStudent(event) {
@@ -67,18 +67,22 @@
             const age = parseInt(document.getElementById('age').value);
             const studentClass = document.getElementById('class').value;
             const image = document.getElementById('image').value;
-            const math = parseInt(document.getElementById('math').value);
-            const science = parseInt(document.getElementById('science').value);
-            const english = parseInt(document.getElementById('english').value);
+            const html = parseInt(document.getElementById('html').value);
+            const css = parseInt(document.getElementById('css').value);
+            const javascript = parseInt(document.getElementById('java').value);
+            const react = parseInt(document.getElementById('react').value);
+            const python = parseInt(document.getElementById('python').value);
             
             const newStudent = {
                 name,
                 age,
                 class: studentClass,
                 image,
-                math,
-                science,
-                english
+                html,
+                css,
+                javascript,
+                react,
+                python
             };
             
             students.push(newStudent);
