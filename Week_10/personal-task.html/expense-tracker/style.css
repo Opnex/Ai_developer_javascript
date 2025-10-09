@@ -6,7 +6,7 @@
         }
         
         body {
-            background: linear-gradient(135deg, #1a2a6c, #b21f1f, #fdbb2d);
+            background: linear-gradient(135deg, rgb(226, 234, 226), rgb(128, 205, 128), #f8f9fa);
             color: #333;
             min-height: 100vh;
             padding: 20px;
@@ -22,7 +22,7 @@
         }
         
         header {
-            background: #2c3e50;
+            background: rgb(20, 241, 20);
             color: white;
             padding: 25px;
             text-align: center;
@@ -34,8 +34,9 @@
         }
         
         .subtitle {
-            font-size: 1rem;
+            font-size: 1.3rem;
             opacity: 0.8;
+            color: black;
         }
         
         .app-body {
@@ -117,7 +118,7 @@
         }
         
         button {
-            background: #3498db;
+            background: rgb(40, 234, 40);
             color: white;
             border: none;
             padding: 12px 20px;
@@ -129,7 +130,7 @@
         }
         
         button:hover {
-            background: #2980b9;
+            background: rgb(2, 104, 2);
             transform: translateY(-2px);
         }
         
@@ -159,7 +160,7 @@
         }
         
         .filter-btn.active {
-            background: #3498db;
+            background: rgb(5, 244, 5);
             color: white;
         }
         
