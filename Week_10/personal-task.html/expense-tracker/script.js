@@ -151,6 +151,7 @@
             } else {
                 alert('Please enter a valid budget amount.');
             }
+            document.getElementById('monthly-budget').value = '';
         }
         
         // Filter expenses
